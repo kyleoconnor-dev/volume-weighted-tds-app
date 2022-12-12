@@ -18,12 +18,13 @@ from utilities import VolumeWeightedTDS
 
 # remove pandas warnings - not updating pandas
 import warnings
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-def lambda_handler(event, context):
 
+def run_vwtds():
     start_time = datetime.datetime.now()
-        # Get site data
+    # Get site data
     sites = []
     sites_location = os.path.join(SCRIPT_LOC, 'sites.txt')
     with open(sites_location, 'r') as f:
@@ -48,7 +49,7 @@ def lambda_handler(event, context):
     output_dir = os.path.join(SCRIPT_LOC, 'output')
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-        
+
     output = f'output_{start_time.strftime("%Y%M%d_%H%M%S")}'
     output_location = os.path.join(output_dir, output)
     os.mkdir(output_location)
@@ -104,7 +105,7 @@ def lambda_handler(event, context):
                     time_string = entry
                 site_dict[time_string] = data
                 del site_dict[entry]
-        x=1
+        x = 1
         print('Volume Weighted TDS obtained')
     except Exception as e:
         print(f'Error in obtaining VWTDS -- Error: {e}')
@@ -118,5 +119,4 @@ def lambda_handler(event, context):
     except Exception as e:
         print(f'Error in obtaining salt mass -- Error: {e}')
     result = {**vwtds_data, **regression_data}
-    x=1
     return json.dumps(result)
