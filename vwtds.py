@@ -118,4 +118,4 @@ def run_vwtds():
     except Exception as e:
         print(f'Error in obtaining salt mass -- Error: {e}')
     result = {**vwtds_data, **regression_data}
-    return json.dumps(result)
+    return result
