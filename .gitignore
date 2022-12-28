@@ -1,4 +1,5 @@
-vw-tds
+vwtds-env
 output
+libraries
 .idea
 __pycache__
