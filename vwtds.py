@@ -105,7 +105,6 @@ def run_vwtds():
                     time_string = entry
                 site_dict[time_string] = data
                 del site_dict[entry]
-        x = 1
         print('Volume Weighted TDS obtained')
     except Exception as e:
         print(f'Error in obtaining VWTDS -- Error: {e}')
